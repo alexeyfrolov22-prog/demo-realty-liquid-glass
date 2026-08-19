@@ -7,7 +7,8 @@
 (function () {
 	'use strict';
 
-	var LOGO = '/local/templates/main/images/header/logo-white.svg';
+	/* путь относительный: сборка может лежать не в корне домена */
+	var LOGO = 'local/templates/main/images/header/mark-intro.svg';
 	var EASE = 'cubic-bezier(.16,.84,.32,1)';
 
 	var mq = window.matchMedia ? window.matchMedia.bind(window) : null;
@@ -367,20 +368,13 @@
 		});
 	}
 
-	function addReplay() {
-		var btn = document.createElement('button');
-		btn.type = 'button';
-		btn.className = 'demo-wow-replay';
-		btn.textContent = 'GLASS ↻';
-		btn.addEventListener('click', function () { btn.blur(); runGlassReveal(); });
-		document.body.appendChild(btn);
-	}
+	/* Отладочная кнопка повтора заставки в публичной сборке не нужна. */
+
 
 	/* ---------------- Старт ---------------- */
 	function boot() {
 		initGlassCursor();
 		initSheen();
-		addReplay();
 		if (REDUCED) return;
 
 		initStack();
